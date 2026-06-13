@@ -101,6 +101,10 @@ cannot meet demand at lower total cost.
 
 ## Project Structure
 
+<p align="center">
+  <img src="static/images/results.png" alt="Pipeline" width="850">
+</p>
+
 ```text
 app/
   __init__.py          Flask application factory
