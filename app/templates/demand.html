@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Demand definition | URBS Himalaya{% endblock %}
+{% block content %}
+<section class="page-shell">
+  <div class="page-heading">
+    <div><span class="eyebrow">Step 2 · Demand</span><h1>Define electricity demand</h1><p>Combine representative community profiles or inspect an uploaded Excel workbook.</p></div>
+    <div class="metric-card"><span>Estimated annual demand</span><strong id="totalDemand">Not calculated</strong></div>
+  </div>
+  <div class="dashboard-grid demand-layout">
+    <section class="panel">
+      <h2>Add demand categories</h2>
+      <form id="energyForm">
+        <label for="commodity">Community asset</label>
+        <select id="commodity" name="commodity">
+          {% for category in categories %}<option>{{ category }}</option>{% endfor %}
+        </select>
+        <label for="quantity">Number of units</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="10000" value="1" required>
+        <button class="button button-primary button-full" type="submit">Add to scenario</button>
+      </form>
+      <div class="status-box" id="demandStatus" hidden></div>
+      <div class="selection-list" id="commodityList"><p class="muted">No categories added in this browser session.</p></div>
+    </section>
+    <section class="panel">
+      <h2>Demand profile</h2>
+      <div class="chart-wrap"><canvas id="demandChart"></canvas></div>
+      <button class="button button-secondary" id="generateChartButton">Refresh chart</button>
+      <hr>
+      <h3>Inspect your own workbook</h3>
+      <p class="muted">Upload an Excel file to calculate the sum of its first column.</p>
+      <form action="{{ url_for('demand.upload_and_sum') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx,.xls" required>
+        <button class="button button-quiet" type="submit">Upload and calculate</button>
+      </form>
+      {% if sum_result is not none %}<div class="status-box is-success">Uploaded profile total: {{ "{:,.2f}".format(sum_result) }} kWh/year</div>{% endif %}
+    </section>
+  </div>
+  <div class="page-actions"><a class="button button-secondary" href="{{ url_for('main.map_page') }}">Back</a><button class="button button-primary" id="generateJSONButton">Generate demand input and continue</button></div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/demand.js') }}"></script>
+{% endblock %}

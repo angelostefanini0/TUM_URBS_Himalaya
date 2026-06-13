@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Results | URBS Himalaya{% endblock %}
+{% block content %}
+<section class="page-shell">
+  <div class="page-heading"><div><span class="eyebrow">Optimization results</span><h1>Electricity supply and demand</h1><p>The plot summarizes dispatch across the modeled period. The complete package includes model reports and technology-specific figures.</p></div><a class="button button-primary" href="{{ url_for('main.download_result', filename=zip_filename) }}">Download result package</a></div>
+  <div class="panel result-panel"><img src="{{ url_for('static', filename='images/' + image_filename) }}" alt="URBS electricity result chart"></div>
+  <div class="page-actions"><a class="button button-secondary" href="{{ url_for('main.index') }}">Start another scenario</a><a class="button button-quiet" href="{{ url_for('main.process_page') }}">Review technologies</a></div>
+</section>
+{% endblock %}

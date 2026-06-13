@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Run optimization | URBS Himalaya{% endblock %}
+{% block content %}
+<section class="model-stage">
+  <div class="run-card">
+    <div class="run-label">URBS</div>
+    <span class="eyebrow">Step 4 · Optimization</span>
+    <h1>Run the energy system model</h1>
+    <p>URBS will solve the configured hourly least-cost scenario using the {{ config.URBS_SOLVER }} solver.</p>
+    {% if error %}<div class="status-box is-error"><strong>Optimization failed</strong><span>{{ error }}</span></div>{% endif %}
+    <form action="{{ url_for('urbs.run') }}" method="post" id="urbsRunForm">
+      <button class="button button-primary button-large" type="submit">Run URBS optimization</button>
+    </form>
+    <div class="loading-panel" id="runLoading" hidden><span class="spinner"></span><strong>Optimization in progress</strong><p>Keep this page open while reports and plots are generated.</p></div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/run.js') }}"></script>{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Resource assessment | URBS Himalaya{% endblock %}
+{% block head %}<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">{% endblock %}
+{% block content %}
+<section class="page-shell">
+  <div class="page-heading">
+    <div><span class="eyebrow">Step 1 · Resources</span><h1>Select the project location</h1><p>Search for a community or select a point on the map to generate renewable resource profiles.</p></div>
+    <div class="page-note">Solar and wind: Renewables Ninja<br>Hydro: HydroRIVERS</div>
+  </div>
+  <div class="dashboard-grid map-layout">
+    <aside class="panel">
+      <h2>Location</h2>
+      <label for="location">Community or place</label>
+      <div class="input-action"><input id="location" placeholder="e.g. Gharaunda, Haryana"><button class="button button-secondary" id="searchButton">Search</button></div>
+      <div class="field-grid">
+        <div><label for="latitude">Latitude</label><input id="latitude" inputmode="decimal"></div>
+        <div><label for="longitude">Longitude</label><input id="longitude" inputmode="decimal"></div>
+      </div>
+      <button class="button button-primary button-full" id="startButton">Fetch renewable profiles</button>
+      <div class="status-box" id="resourceStatus" hidden></div>
+      <div class="download-stack" id="resourceDownloads" hidden>
+        <a class="button button-quiet" id="downloadPVButton">Download solar JSON</a>
+        <a class="button button-quiet" id="downloadWindButton">Download wind JSON</a>
+        <button class="button button-quiet" id="getDischarge">View hydro profile</button>
+      </div>
+      <button class="button button-primary button-full" id="nextButtonMap" disabled>Continue to demand</button>
+    </aside>
+    <div class="panel map-panel"><div id="map"></div><p class="map-hint">Click anywhere on the map to update the selected coordinates.</p></div>
+  </div>
+</section>
+<dialog id="dischargeModal" class="dialog">
+  <button class="dialog-close" data-close-dialog aria-label="Close">×</button>
+  <h2>Estimated hourly river discharge</h2>
+  <img src="{{ url_for('static', filename='images/discharge_timeseries_plot.png') }}" alt="Hourly discharge time series">
+</dialog>
+{% endblock %}
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

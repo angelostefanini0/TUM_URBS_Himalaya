@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}URBS TUM SEED Himalaya{% endblock %}
+{% block content %}
+<section class="home-hero">
+  <div class="home-hero-content">
+    <span class="eyebrow">URBS TUM SEED Himalaya</span>
+    <h1>Energy system planning for Himalayan communities</h1>
+    <p>Define local demand, assess renewable resources, select technologies, and run an URBS optimization through a guided workflow.</p>
+    <div class="button-row">
+      <a class="button button-primary" href="{{ url_for('main.map_page') }}">Start planning</a>
+      <a class="button button-secondary" href="#workflow">View workflow</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workflow">
+  <div class="section-heading">
+    <span class="eyebrow">Workflow</span>
+    <h2>Five steps from location to results</h2>
+    <p>Each step prepares the input required by the next stage of the analysis.</p>
+  </div>
+  <div class="workflow-list">
+    {% for number, title, copy in [
+      ('01', 'Locate resources', 'Select a community and retrieve solar, wind, and nearby river availability.'),
+      ('02', 'Define demand', 'Combine representative household and public-service electricity profiles.'),
+      ('03', 'Choose technologies', 'Add hydro, solar, wind, thermal, or custom conversion processes.'),
+      ('04', 'Run URBS', 'Find a least-cost feasible system with the configured optimization solver.'),
+      ('05', 'Review results', 'Inspect generation plots and download spreadsheets, PDFs, and model outputs.')
+    ] %}
+    <article class="workflow-item"><span>{{ number }}</span><h3>{{ title }}</h3><p>{{ copy }}</p></article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

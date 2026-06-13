@@ -1,0 +1,93 @@
+# Python environments and bytecode
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test, type-checker and linter caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE and operating-system files
+.idea/
+.vscode/
+*.code-workspace
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+~$*
+
+# Flask/runtime uploads and generated user selections
+uploads/
+process.json
+processdemand.json
+new_total_demand.xlsx
+
+# URBS generated result packages
+result/
+urbs_master/result/
+results.zip
+*.h5
+
+# Runtime-generated renewable profiles and model inputs
+urbs_master/Input/json/avg_q.json
+urbs_master/Input/json/demand.json
+urbs_master/Input/json/process.json
+urbs_master/Input/json/process_commodity.json
+urbs_master/Input/json/processdemand.json
+urbs_master/Input/json/pv_data.json
+urbs_master/Input/json/supim.json
+urbs_master/Input/json/wind_data.json
+
+# OneDrive conflict copies and archived input experiments
+urbs_master/Input/json/*-AngeloThinkPad.json
+urbs_master/Input/json1/
+urbs_master/Input/json/fileslack.zip
+
+# Large optional HydroRIVERS dataset (install locally; see README)
+static/hydrorivers/*.shp
+static/hydrorivers/*.shx
+static/hydrorivers/*.dbf
+static/hydrorivers/*.qmd
+
+# Generated charts copied into static folders
+app/static/images/discharge_timeseries_plot.png
+app/static/images/elec_in_mid.png
+app/static/images/scenario_base-*.png
+static/images/discharge_timeseries_plot.png
+static/images/elec_in_mid.png
+static/images/scenario_base-*.png
+
+# Legacy duplicate presentation assets; Flask serves app/static/
+static/images/HIMALAYA.jpg
+static/images/_*.jpg
+static/images/technical-university-of-munich--tum--374-logo.png
+
+# Obsolete pre-refactor frontend and backup application
+appbackup.py
+/templates/
+static/*.css
+static/*.js
+
+# Empty local placeholder; the served image is app/static/images/mountains.jpg
+/mountains.jpg

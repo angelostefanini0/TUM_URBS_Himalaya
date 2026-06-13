@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="URBS TUM SEED Himalaya energy system planning tool">
+  <title>{% block title %}URBS TUM SEED Himalaya{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('main.index') }}">
+      <img class="brand-logo" src="{{ url_for('static', filename='images/technical-university-of-munich--tum--374-logo.png') }}" alt="Technical University of Munich">
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span><strong>URBS TUM SEED Himalaya</strong><small>Energy system planning tool</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="{{ url_for('main.index') }}">Home</a>
+      <a href="{{ url_for('main.map_page') }}">Planning workflow</a>
+      <a href="{{ url_for('main.results_ready') }}">Results</a>
+    </nav>
+  </header>
+
+  {% if active_step %}
+  <div class="workflow-wrap">
+    <div class="workflow" aria-label="Planning workflow">
+      {% for number, label, endpoint in [
+        (1, 'Resources', 'main.map_page'),
+        (2, 'Demand', 'main.demand_page'),
+        (3, 'Technologies', 'main.process_page'),
+        (4, 'Optimize', 'main.run_page'),
+        (5, 'Results', 'main.results_ready')
+      ] %}
+      <a class="workflow-step {{ 'is-active' if number == active_step else '' }} {{ 'is-complete' if number < active_step else '' }}"
+         href="{{ url_for(endpoint) }}">
+        <span class="workflow-number">{{ number }}</span>
+        <strong class="workflow-label">{{ label }}</strong>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <footer class="site-footer">
+    <div><strong>URBS TUM SEED Himalaya</strong><br>Energy system planning for Himalayan communities.</div>
+    <div>Technical University of Munich · SEED</div>
+  </footer>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

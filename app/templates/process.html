@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Technology selection | URBS Himalaya{% endblock %}
+{% block content %}
+<section class="page-shell">
+  <div class="page-heading"><div><span class="eyebrow">Step 3 · Technologies</span><h1>Select energy technologies</h1><p>Click or drag the technologies available in the project scenario.</p></div></div>
+  <div class="dashboard-grid technology-layout">
+    <section class="panel">
+      <div class="panel-heading"><h2>Technology library</h2><input id="technologySearch" placeholder="Filter technologies"></div>
+      <div class="technology-grid" id="technologyLibrary">
+        {% for id, name, description, image in [
+          ('hydro','Hydro plant','Uses the local river availability profile.','_14966a43-42ae-4bf7-ae7c-541d0661421f.jpg'),
+          ('solar','Photovoltaics','Converts hourly solar availability to electricity.','_7f5eb02c-86bd-444c-8f67-009553b7229a.jpg'),
+          ('wind','Wind park','Converts hourly wind availability to electricity.','_e6a6dbc2-7d89-45c7-912c-837883fdbbc1.jpg'),
+          ('gasplant','Gas plant','Dispatchable thermal generation.','_14345d92-1210-4775-b6ca-54ecdc5650fe.jpg'),
+          ('ligniteplant','Slack powerplant','Dispatchable system backup.','_5bbaab21-965f-4ce9-bb55-88cf35b0d089.jpg')
+        ] %}
+        <button class="technology-card" draggable="true" data-technology="{{ id }}">
+          <img src="{{ url_for('static', filename='images/' + image) }}" alt="">
+          <span><strong>{{ name }}</strong><small>{{ description }}</small></span>
+          <b>+</b>
+        </button>
+        {% endfor %}
+      </div>
+      <button class="button button-secondary" id="openCustomProcess">Create custom process</button>
+    </section>
+    <section class="panel selected-panel">
+      <h2>Scenario technologies</h2>
+      <div class="drop-zone" id="dropZone"><p>Drop technologies here or select them from the library.</p></div>
+      <div class="status-box" id="processStatus" hidden></div>
+      <button class="button button-primary button-full" id="nextButtonProcess">Prepare model and continue</button>
+    </section>
+  </div>
+</section>
+<dialog id="customProcessDialog" class="dialog">
+  <button class="dialog-close" data-close-dialog aria-label="Close">×</button>
+  <h2>Create a custom process</h2>
+  <form id="customProcessForm" class="form-grid">
+    {% for name, label, type in [
+      ('site','Site','text'),('process','Process name','text'),('inst-cap','Installed capacity','number'),
+      ('cap-lo','Minimum capacity','number'),('cap-up','Maximum capacity','number'),('max-grad','Maximum gradient','number'),
+      ('min-fraction','Minimum fraction','number'),('inv-cost','Investment cost','number'),('fix-cost','Fixed cost','number'),
+      ('var-cost','Variable cost','number'),('wacc','WACC','number'),('depreciation','Depreciation years','number'),
+      ('area-per-cap','Area per capacity','number'),('support_timeframe','Support timeframe','number')
+    ] %}
+    <label>{{ label }}<input name="{{ name }}" type="{{ type }}" step="any" {{ 'required' if name in ['site','process'] else '' }}></label>
+    {% endfor %}
+    <button class="button button-primary" type="submit">Save custom process</button>
+  </form>
+</dialog>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/process.js') }}"></script>{% endblock %}
