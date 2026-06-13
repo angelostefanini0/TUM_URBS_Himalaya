@@ -102,7 +102,7 @@ cannot meet demand at lower total cost.
 ## Project Structure
 
 <p align="center">
-  <img src="static/images/results.png" alt="Pipeline" width="850">
+  <img src="static/images/pipeline.png" alt="Pipeline" width="850">
 </p>
 
 ```text
