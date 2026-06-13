@@ -184,11 +184,7 @@ python run.py
 
 Open <http://127.0.0.1:5000> in a browser.
 
-The legacy command remains available:
 
-```powershell
-python app.py
-```
 
 ## Required Demand Data
 
