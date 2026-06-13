@@ -4,7 +4,7 @@ URBS TUM SEED Himalaya is a Flask-based web application for energy system
 development planning. It helps users define a local study area, collect or
 prepare input data, estimate electricity demand, select renewable and
 technical processes, and run an [URBS](https://urbs.readthedocs.io/en/latest/) optimization model to generate a
-least-cost energy system scenario. The project was originally designed to support NGOs and local stakeholders in planning energy systems for rural Himalayan communities.
+least-cost energy system scenario. The project was originally designed together with the Chair of Renewable and Sustainable Energy Systems at the Technical University of Munich to support NGOs and local stakeholders in planning energy systems for rural Himalayan communities.
 
 <p align="center">
   <img src="static/images/Home.png" alt="URBS TUM SEED Himalaya home page" width="850">
